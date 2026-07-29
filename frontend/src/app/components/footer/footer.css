@@ -1,0 +1,23 @@
+.footer{
+
+    background:#212529;
+
+    color:white;
+
+    padding:20px 0;
+
+}
+
+.footer hr{
+
+    border-color:#6c757d;
+
+}
+
+.copyright{
+
+    color:#adb5bd;
+
+    font-size:15px;
+
+}

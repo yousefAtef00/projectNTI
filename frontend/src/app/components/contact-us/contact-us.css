@@ -1,0 +1,11 @@
+.card{
+    border-radius:20px;
+}
+
+.card p{
+    margin:20px 0;
+}
+
+hr{
+    opacity:.2;
+}

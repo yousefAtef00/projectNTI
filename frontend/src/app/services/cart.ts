@@ -14,7 +14,7 @@ export class CartService {
   private baseUrl = 'http://localhost:3000/cart';
   cartItems = signal<CartItem[]>([]);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCart() {
     return this.http.get<{ message: string; cart?: { products: CartItem[] } }>(this.baseUrl);
@@ -27,7 +27,22 @@ export class CartService {
   removeFromCart(productId: string) {
     return this.http.delete(`${this.baseUrl}/${productId}`);
   }
+  getCartCount(): number {
+    return this.cartItems().reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+  }
 
+  updateQuantity(productId: string, quantity: number) {
+    return this.http.put(
+      `${this.baseUrl}/${productId}`,
+      { quantity }
+    );
+  }
+  clearCart() {
+    this.cartItems.set([]);
+  }
   loadCart() {
     this.getCart().subscribe({
       next: (res) => {

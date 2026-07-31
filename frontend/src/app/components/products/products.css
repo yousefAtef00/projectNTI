@@ -1,0 +1,41 @@
+.search-section {
+background: #f8f9fa;
+padding: 20px;
+border-radius: 15px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.search-box,
+.price-box {
+position: relative;
+}
+
+.search-icon,
+.price-icon {
+position: absolute;
+left: 15px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 18px;
+z-index: 2;
+}
+
+.search-input,
+.price-input {
+height: 50px;
+border-radius: 10px;
+border: 1px solid #dee2e6;
+padding-left: 45px;
+transition: all 0.2s ease;
+}
+
+.search-input:focus,
+.price-input:focus {
+border-color: #0d6efd;
+box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.search-input::placeholder,
+.price-input::placeholder {
+color: #adb5bd;
+}

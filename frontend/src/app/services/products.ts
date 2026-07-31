@@ -14,15 +14,4 @@ export class ProductService {
     return this.http.get<{ message: string; Products: Producti[] }>(this.baseUrl);
   }
 
-  createProduct(data: Producti) {
-    return this.http.post(this.baseUrl, data);
-  }
-
-  deleteProduct(id: string) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
-  }
-
-  updateProduct(id: string, data: Partial<Producti>) {
-    return this.http.put(`${this.baseUrl}/${id}`, data);
-  }
 }

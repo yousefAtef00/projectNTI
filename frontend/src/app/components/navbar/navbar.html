@@ -38,7 +38,19 @@
         <button (click)="logout()" class="btn btn-outline-danger ms-2">Logout</button>
       }
 
-      <a class="btn btn-outline-primary" routerLink="/cart">  Cart </a>
+     <a
+  class="btn btn-outline-primary ms-2 position-relative"
+  routerLink="/cart">
+
+  🛒 Cart
+
+  @if (cartService.getCartCount() > 0) {
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{ cartService.getCartCount() }}
+    </span>
+  }
+
+</a>
     </div>
   </div>
 </nav>

@@ -4,7 +4,9 @@ import { cartModel } from "../../../db/models/cart.model.js";
 async function getCart(req, res) {
   try {
     let userId = req.decoded._id;
-    let cart = await cartModel.findOne({ user: userId }).populate("products.product");
+    let cart = await cartModel
+      .findOne({ user: userId })
+      .populate("products.product");
     if (cart) {
       res.json({ message: "cart for user", cart });
     } else {
@@ -12,7 +14,9 @@ async function getCart(req, res) {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "something went wrong", error: error.message });
+    res
+      .status(500)
+      .json({ message: "something went wrong", error: error.message });
   }
 }
 
@@ -22,7 +26,7 @@ async function addToCart(req, res) {
 
     if (req.body.quantity <= 0) {
       return res.status(400).json({
-        message: "Quantity must be greater than 0"
+        message: "Quantity must be greater than 0",
       });
     }
 
@@ -56,7 +60,9 @@ async function addToCart(req, res) {
     res.json({ message: "product added to cart", cart });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "something went wrong", error: error.message });
+    res
+      .status(500)
+      .json({ message: "something went wrong", error: error.message });
   }
 }
 
@@ -71,7 +77,9 @@ async function deleteProductInCart(req, res) {
       );
 
       if (existingProduct) {
-        cart.products = cart.products.filter(c => c.product.toString() !== req.params.id);
+        cart.products = cart.products.filter(
+          (c) => c.product.toString() !== req.params.id,
+        );
         await cart.save();
         res.json({ message: "product deleted" });
       } else {
@@ -82,12 +90,60 @@ async function deleteProductInCart(req, res) {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "something went wrong", error: error.message });
+    res
+      .status(500)
+      .json({ message: "something went wrong", error: error.message });
+  }
+}
+async function updateCartQuantity(req, res) {
+  try {
+    let userId = req.decoded._id;
+    let { quantity } = req.body;
+
+    if (quantity <= 0) {
+      return res.status(400).json({
+        message: "Quantity must be greater than 0",
+      });
+    }
+
+    let cart = await cartModel.findOne({ user: userId });
+
+    if (!cart) {
+      return res.status(404).json({
+        message: "cart not found",
+      });
+    }
+
+    let existingProduct = cart.products.find(
+      (p) => p.product.toString() === req.params.id,
+    );
+
+    if (!existingProduct) {
+      return res.status(404).json({
+        message: "product not found in cart",
+      });
+    }
+    if (quantity > existingProduct.stock) {
+      return res.status(400).json({
+        message: `Only ${product.stock} items available`,
+      });
+    }
+    existingProduct.quantity = quantity;
+
+    await cart.save();
+
+    res.json({
+      message: "quantity updated successfully",
+      cart,
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      message: "something went wrong",
+      error: error.message,
+    });
   }
 }
 
-export {
-  addToCart,
-  getCart,
-  deleteProductInCart
-}
+export { addToCart, getCart, deleteProductInCart, updateCartQuantity };

@@ -3,15 +3,18 @@ import { inject } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
+
   const storage = inject(StorageService);
   const token = storage.getItem('token');
 
   if (token) {
+
     const cloned = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
+        token: token
+      }
     });
+
     return next(cloned);
   }
 

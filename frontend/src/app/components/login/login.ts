@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
+import { CartService } from '../../services/cart';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class Login {
   constructor(
     private authService: Auth,
     private router: Router,
-    private storage: StorageService
+    private storage: StorageService,
+    private cartService:CartService
   ) {}
 
   errorMessage = '';
@@ -31,6 +33,7 @@ login() {
       this.storage.setItem('token', response.token);
       this.authService.isLoggedIn.set(true);   
       this.router.navigate(['/products']);
+      this.cartService.loadCart();
     },
     error: (error) => {
       this.errorMessage = error.error.message;

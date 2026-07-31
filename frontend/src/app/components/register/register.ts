@@ -17,7 +17,6 @@ export class Register {
 };
   constructor(private authService:Auth,private router:Router ) {}
 errorMessage = '';
-sucessMessage = '';
 
   register() {
 
@@ -27,7 +26,6 @@ sucessMessage = '';
       .subscribe({
         next: (response:any) => {
           console.log(response);
-          this.sucessMessage = response.message;
             this.router.navigate(['/login']);
         },
 

@@ -1,45 +1,100 @@
 <div class="container mt-5">
-
-  <h2 class="mb-4">Your Cart</h2>
+  <h2 class="mb-4">Shopping Cart</h2>
 
   @if (cartService.cartItems().length === 0) {
-    <p class="text-muted">Your cart is empty.</p>
+    <div class="alert alert-info">Your cart is empty.</div>
   }
 
   @for (item of cartService.cartItems(); track item.product._id) {
-    <div class="card mb-3 p-3">
-      <div class="row align-items-center">
 
-        <div class="col-md-2">
-          <img [src]="item.product.image" class="img-fluid rounded" height="80">
+  <div class="card mb-3 shadow-sm border-0">
+    <div class="card-body">
+
+      <div class="row align-items-center g-3">
+
+        <div class="col-12 col-md-2 text-center">
+          <img
+            [src]="item.product.image"
+            [alt]="item.product.title"
+            class="img-fluid rounded product-image"
+          />
         </div>
 
-        <div class="col-md-4">
-          <h5>{{ item.product.title }}</h5>
+       
+        <div class="col-12 col-md-3">
+          <h5 class="fw-bold mb-2">
+            {{ item.product.title }}
+          </h5>
+
+          <p class="text-muted mb-0">
+            {{ item.product.price }} EGP
+          </p>
         </div>
 
-        <div class="col-md-2">
-          Qty: {{ item.quantity }}
+      
+        <div class="col-12 col-md-3">
+          <div class="d-flex align-items-center justify-content-center gap-2">
+
+            <button
+              class="btn btn-outline-secondary quantity-btn"
+              (click)="decreaseQuantity(item.product._id!, item.quantity)"
+            >
+              −
+            </button>
+
+            <span class="fw-bold quantity">
+              {{ item.quantity }}
+            </span>
+
+            <button
+              class="btn btn-outline-secondary quantity-btn"
+              [disabled]="item.quantity >= item.product.stock"
+              (click)="increaseQuantity(item.product._id!, item.quantity)"
+            >
+              +
+            </button>
+
+          </div>
+
+          @if (item.quantity >= item.product.stock) {
+            <small class="text-danger d-block text-center mt-2">
+              Maximum stock reached
+            </small>
+          }
         </div>
 
-        <div class="col-md-2">
-          {{ item.product.price * item.quantity }} EGP
+      
+        <div class="col-12 col-md-2 text-center">
+          <span class="text-success fw-bold fs-5">
+            {{ item.product.price * item.quantity }} EGP
+          </span>
         </div>
 
-        <div class="col-md-2">
-          <button class="btn btn-outline-danger btn-sm" (click)="removeItem(item.product._id!)">
-            Remove
+       
+        <div class="col-12 col-md-2 text-center">
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeItem(item.product._id!)"
+          >
+             Remove
           </button>
         </div>
 
       </div>
+
     </div>
-  }
+  </div>
+
+}
 
   @if (cartService.cartItems().length > 0) {
     <div class="text-end mt-4">
-      <h4>Total: {{ getTotal() }} EGP</h4>
+      <h4>
+        Total:
+        <span class="text-success"> {{ getTotal() }} EGP </span>
+      </h4>
+
+      <a routerLink="/checkout" class="btn btn-success mt-3 px-4"> Proceed to Checkout </a>
     </div>
   }
-
 </div>

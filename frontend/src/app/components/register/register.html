@@ -1,11 +1,8 @@
 <div class="container mt-5">
-
-  <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
-
+  <div class="card shadow p-4 mx-auto" style="max-width: 500px">
     <h2 class="text-center mb-4">Create Account</h2>
 
     <form (ngSubmit)="register()">
-
       <div class="mb-3">
         <label class="form-label">Name</label>
 
@@ -15,7 +12,8 @@
           [(ngModel)]="registerData.name"
           name="name"
           placeholder="Enter your name"
-          required>
+          required
+        />
       </div>
 
       <div class="mb-3">
@@ -27,7 +25,8 @@
           [(ngModel)]="registerData.email"
           name="email"
           placeholder="Enter your email"
-          required>
+          required
+        />
       </div>
 
       <div class="mb-3">
@@ -39,43 +38,22 @@
           [(ngModel)]="registerData.password"
           name="password"
           placeholder="Enter your password"
-          required>
+          required
+        />
       </div>
-    @if (sucessMessage) {
-  <div class="alert alert-success">
-    {{ sucessMessage }}
-  </div>
-}
-@else if (errorMessage) {
-  <div class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
-}
+      @if (errorMessage) {
+        <div class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+      }
 
-      <button
-        class="btn btn-primary w-100"
-        type="submit">
-
-        Register
-
-      </button>
-
+      <button class="btn btn-primary w-100" type="submit">Register</button>
     </form>
 
     <div class="text-center mt-4">
-
       <span>Already have an account?</span>
 
-      <a
-        routerLink="/login"
-        class="text-primary fw-bold text-decoration-none ms-1">
-
-        Login
-
-      </a>
-
+      <a routerLink="/login" class="text-primary fw-bold text-decoration-none ms-1"> Login </a>
     </div>
-
   </div>
-
 </div>

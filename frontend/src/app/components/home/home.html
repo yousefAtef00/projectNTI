@@ -1,4 +1,403 @@
+<div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
 
-<p>home works!</p>
+  <div class="carousel-indicators">
+
+    <button
+      type="button"
+      data-bs-target="#heroSlider"
+      data-bs-slide-to="0"
+      class="active">
+    </button>
+
+    <button
+      type="button"
+      data-bs-target="#heroSlider"
+      data-bs-slide-to="1">
+    </button>
+
+    <button
+      type="button"
+      data-bs-target="#heroSlider"
+      data-bs-slide-to="2">
+    </button>
+
+  </div>
+
+  <div class="carousel-inner">
 
 
+    <div class="carousel-item active">
+
+      <div class="hero-slide hero-one">
+
+        <div class="container">
+
+          <div class="hero-content">
+
+            <h1>
+              Discover The Latest Technology
+            </h1>
+
+            <p>
+              Find the latest smartphones, laptops and accessories.
+            </p>
+
+            <a
+              routerLink="/products"
+              class="btn btn-primary btn-lg">
+
+              Shop Now
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="carousel-item">
+
+      <div class="hero-slide hero-two">
+
+        <div class="container">
+
+          <div class="hero-content">
+
+            <h1>
+              Upgrade Your Setup
+            </h1>
+
+            <p>
+              Powerful laptops and premium accessories.
+            </p>
+
+            <a
+              routerLink="/products"
+              class="btn btn-primary btn-lg">
+
+              Explore Products
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="carousel-item">
+
+      <div class="hero-slide hero-three">
+
+        <div class="container">
+
+          <div class="hero-content">
+
+            <h1>
+              Technology Made Simple
+            </h1>
+
+            <p>
+              Quality products at competitive prices.
+            </p>
+
+            <a
+              routerLink="/products"
+              class="btn btn-primary btn-lg">
+
+              Start Shopping
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#heroSlider"
+    data-bs-slide="prev">
+
+    <span class="carousel-control-prev-icon"></span>
+
+  </button>
+
+
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#heroSlider"
+    data-bs-slide="next">
+
+    <span class="carousel-control-next-icon"></span>
+
+  </button>
+
+</div>
+
+<section class="container py-5">
+
+  <div class="section-title text-center mb-5">
+
+    <h2>
+      Trending Products
+    </h2>
+
+    <p class="text-muted">
+      Check out our most popular products
+    </p>
+
+  </div>
+
+
+  <div class="row g-4">
+
+    @for (
+      product of products;
+      track product._id
+    ) {
+
+      <div class="col-12 col-sm-6 col-lg-3">
+
+        <app-product
+          [product]="product">
+        </app-product>
+
+      </div>
+
+    }
+
+  </div>
+
+</section>
+<section class="latest-news py-5">
+
+  <div class="container">
+
+    <div class="section-title text-center mb-5">
+
+      <h2>
+        Latest News
+      </h2>
+
+      <p class="text-muted">
+        Stay updated with the latest technology news
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+      <div class="col-md-6">
+
+        <div class="card news-card h-100 shadow-sm">
+
+          <div class="card-body">
+
+            <span class="badge bg-primary mb-3">
+              Smartphones
+            </span>
+
+            <h5 class="card-title">
+              The Future of Smartphones
+            </h5>
+
+            <p class="card-text text-muted">
+
+              Discover how modern smartphones are becoming
+              more powerful and smarter than ever.
+
+            </p>
+
+            <a
+              routerLink="/products"
+              class="btn btn-outline-primary">
+
+              Read More
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+ 
+      <div class="col-md-6">
+
+        <div class="card news-card h-100 shadow-sm">
+
+          <div class="card-body">
+
+            <span class="badge bg-success mb-3">
+              Laptops
+            </span>
+
+            <h5 class="card-title">
+              New Generation Laptops
+            </h5>
+
+            <p class="card-text text-muted">
+
+              Powerful processors and modern designs are
+              changing the laptop experience.
+
+            </p>
+
+            <a
+              routerLink="/products"
+              class="btn btn-outline-primary">
+
+              Read More
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+   
+      
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="container py-5">
+
+  <div class="section-title text-center mb-5">
+
+    <h2>
+      Featured Categories
+    </h2>
+
+    <p class="text-muted">
+      Explore our technology categories
+    </p>
+
+  </div>
+
+
+  <div class="row g-4">
+
+
+    <div class="col-6 col-md-3">
+
+      <div class="category-card">
+
+       
+
+        <h5>
+          Smartphones
+        </h5>
+
+        <a
+          routerLink="/products"
+          class="btn btn-sm btn-outline-primary">
+
+          Shop Now
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-6 col-md-3">
+
+      <div class="category-card">
+
+       
+
+        <h5>
+          Laptops
+        </h5>
+
+        <a
+          routerLink="/products"
+          class="btn btn-sm btn-outline-primary">
+
+          Shop Now
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-6 col-md-3">
+
+      <div class="category-card">
+
+     
+
+        <h5>
+          Audio
+        </h5>
+
+        <a
+          routerLink="/products"
+          class="btn btn-sm btn-outline-primary">
+
+          Shop Now
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-6 col-md-3">
+
+      <div class="category-card">
+
+       
+
+        <h5>
+          Smart Watches
+        </h5>
+
+        <a
+          routerLink="/products"
+          class="btn btn-sm btn-outline-primary">
+
+          Shop Now
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

@@ -5,5 +5,5 @@ import { checkout, getAllOrderForUser, getOrderById } from "./order.controller.j
 export const orderRoutes = express().router
 orderRoutes.use(express.json())
 orderRoutes.get("/orders",verifyToke,getAllOrderForUser)
-orderRoutes.post("/cheakout",verifyToke,checkout)
+orderRoutes.post("/checkout",verifyToke,checkout)
 orderRoutes.get("/orders/:id",verifyToke,getOrderById)

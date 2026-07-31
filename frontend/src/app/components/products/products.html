@@ -1,16 +1,37 @@
-<div class="container mt-5">
-
-    <div class="row g-4">
-
-        @for(item of products; track item._id){
-            <div class="col-md-4">
-                <app-product
-                    [product]="item">
-                </app-product>
-            </div>
-
-        }
-
+<div class="search-section mb-5">
+  <div class="row g-3 align-items-center">
+    <div class="col-md-7">
+      <div class="search-box">
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Search products by name..."
+          [(ngModel)]="searchName"
+          (input)="filterProducts()"
+        />
+      </div>
     </div>
 
+    <div class="col-md-5">
+      <div class="price-box">
+        <input
+          type="number"
+          class="form-control price-input"
+          placeholder="Maximum price"
+          [(ngModel)]="maxPrice"
+          (input)="filterProducts()"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row g-4">
+    @for (item of filteredProducts; track item._id) {
+      <div class="col-md-4">
+        <app-product [product]="item"> </app-product>
+      </div>
+    }
+  </div>
 </div>

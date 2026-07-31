@@ -7,7 +7,7 @@ import { createProduct, deleteProduct, getProducts, updateProduct } from "./prod
 export const productRoutes = express().router
 
 
-productRoutes.get("/products",verifyToke,getProducts)
+productRoutes.get("/products",getProducts)
 
 productRoutes.post("/products", verifyToke ,createProduct)
 productRoutes.delete("/products/:id",verifyToke,deleteProduct)

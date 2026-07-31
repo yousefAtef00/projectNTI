@@ -29,3 +29,14 @@
     border-radius: 10px;
 
 }
+
+
+.navbar-collapse > a.nav-link,
+.navbar-collapse > button.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-collapse > a.nav-link:hover,
+.navbar-collapse > button.nav-link:hover {
+    color: #ffc107 !important;
+}

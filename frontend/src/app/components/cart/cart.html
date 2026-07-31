@@ -1,1 +1,45 @@
-<p>cart works!</p>
+<div class="container mt-5">
+
+  <h2 class="mb-4">Your Cart</h2>
+
+  @if (cartService.cartItems().length === 0) {
+    <p class="text-muted">Your cart is empty.</p>
+  }
+
+  @for (item of cartService.cartItems(); track item.product._id) {
+    <div class="card mb-3 p-3">
+      <div class="row align-items-center">
+
+        <div class="col-md-2">
+          <img [src]="item.product.image" class="img-fluid rounded" height="80">
+        </div>
+
+        <div class="col-md-4">
+          <h5>{{ item.product.title }}</h5>
+        </div>
+
+        <div class="col-md-2">
+          Qty: {{ item.quantity }}
+        </div>
+
+        <div class="col-md-2">
+          {{ item.product.price * item.quantity }} EGP
+        </div>
+
+        <div class="col-md-2">
+          <button class="btn btn-outline-danger btn-sm" (click)="removeItem(item.product._id!)">
+            Remove
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+  @if (cartService.cartItems().length > 0) {
+    <div class="text-end mt-4">
+      <h4>Total: {{ getTotal() }} EGP</h4>
+    </div>
+  }
+
+</div>

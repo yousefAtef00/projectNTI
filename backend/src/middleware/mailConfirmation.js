@@ -8,9 +8,10 @@ import { emailTemplate } from "../utilities/emailTemplate.js";
   
   service: "gmail",
   auth: {
-    user: "ahmed.abdelmawgood200@gmail.com",
-    pass: "mlyw whgt zfwk mdsi",
-  },
+  user: process.env.EMAIL_USER,
+  pass: process.env.EMAIL_PASS,
+}
+  ,
   tls:{
     rejectUnauthorized:false
   }
@@ -20,14 +21,14 @@ export async function mailConfirmation(mail){
 
   
   const info = await transporter.sendMail({
-    from: '"NTIG5" <ahmed.abdelmawgood200@gmail.com>', // sender address
-    to: mail, // list of recipients
-    subject: "Hello", // subject line
-    text: "Hello world?", // plain text body
-    html: emailTemplate(mail), // HTML body
+    from: '"NTIG5" <ahmed.abdelmawgood200@gmail.com>', 
+    to: mail, 
+    subject: "Hello", 
+    text: "Hello world?", 
+    html: emailTemplate(mail), 
   });
 
   console.log("Message sent: %s", info.messageId);
-  // Preview URL is only available when using an Ethereal test account
+  
 
 }

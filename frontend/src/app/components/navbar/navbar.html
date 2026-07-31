@@ -1,80 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-
-  <div class="container">
-
-    <a class="navbar-brand fw-bold" routerLink="/" >
-       TechStore
-    </a>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home"> TechStore </a>
 
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent">
-
+      data-bs-target="#navbarSupportedContent"
+    >
       <span class="navbar-toggler-icon"></span>
-
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <ul class="navbar-nav mx-auto">
-
+     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/home" routerLinkActive="active" >Home</a>
+          <a class="nav-link" routerLink="/home" routerLinkActive="active"> Home </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+          <a class="nav-link" routerLink="/products" routerLinkActive="active"> Products </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active"> About </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active"> Contact </a>
         </li>
-
       </ul>
+      @if (!authService.isLoggedIn()) {
+        <a routerLink="/login" class="btn btn-outline-primary ms-2"> Login </a>
 
-      <div class="d-flex align-items-center gap-2">
+        <a routerLink="/register" class="btn btn-primary ms-2"> Register </a>
+      }
+      @if (authService.isLoggedIn()) {
+        <button (click)="logout()" class="btn btn-outline-danger ms-2">Logout</button>
+      }
 
-        <button
-          class="btn btn-outline-light"
-          routerLink="/login">
-
-          Login
-
-        </button>
-
-        <button
-          class="btn btn-warning"
-          routerLink="/register">
-
-          Register
-
-        </button>
-
-        <button
-          class="btn btn-success position-relative"
-          routerLink="/cart">
-
-          🛒 Cart
-
-          <span
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-
-            0
-
-          </span>
-
-        </button>
-
-      </div>
-
+      <a class="btn btn-outline-primary" routerLink="/cart">  Cart </a>
     </div>
-
   </div>
-
 </nav>

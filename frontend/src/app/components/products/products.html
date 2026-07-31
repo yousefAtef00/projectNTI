@@ -1,1 +1,16 @@
-<h1>products</h1>
+<div class="container mt-5">
+
+    <div class="row g-4">
+
+        @for(item of products; track item._id){
+            <div class="col-md-4">
+                <app-product
+                    [product]="item">
+                </app-product>
+            </div>
+
+        }
+
+    </div>
+
+</div>

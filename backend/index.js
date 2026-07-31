@@ -4,11 +4,11 @@ import { userRoutes } from "./src/modules/user/user.routes.js"
 import { productRoutes } from "./src/modules/products/products.routes.js"
 import { orderRoutes } from "./src/modules/order/order.routes.js"
 import { cartRoutes } from "./src/modules/cart/cart.routes.js"
-
+import cors from "cors";
 
 
 const app = express()
-
+app.use(cors());
 dbConnection
 
 app.use(userRoutes)

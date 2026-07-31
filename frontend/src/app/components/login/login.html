@@ -1,73 +1,54 @@
 <section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow border-0 p-5">
+        <h2 class="text-center mb-3">Login</h2>
 
-    <div class="row justify-content-center">
+        <p class="text-center text-muted mb-4">Sign in to your TechStore account</p>
 
-        <div class="col-md-6 col-lg-5">
+        <form (ngSubmit)="login()">
+          <div class="mb-3">
+            <label class="form-label"> Email </label>
 
-            <div class="card shadow border-0 p-5">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="loginData.email"
+              name="email"
+              placeholder="Enter your Email"
+              required
+            />
+          </div>
 
-                <h2 class="text-center mb-3">
-                    Login
-                </h2>
+          <div class="mb-4">
+            <label class="form-label"> Password </label>
 
-                <p class="text-center text-muted mb-4">
-                    Sign in to your TechStore account
-                </p>
+            <input
+              type="password"
+              class="form-control"
+              [(ngModel)]="loginData.password"
+              name="password"
+              placeholder="Enter your Password"
+              required
+            />
+          </div>
+          @if (errorMessage) {
+  <div class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+}
 
-                <form>
+          <button  type="submit" class="btn btn-dark w-100">Login</button>
+        </form>
 
-                    <div class="mb-3">
+        <hr />
 
-                        <label class="form-label">
-                            Email
-                        </label>
+        <p class="text-center mb-0">
+          Don't have an account?
 
-                        <input
-                            type="email"
-                            class="form-control"
-                            placeholder="Enter your email">
-
-                    </div>
-
-                    <div class="mb-4">
-
-                        <label class="form-label">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            class="form-control"
-                            placeholder="Enter your password">
-
-                    </div>
-
-                    <button class="btn btn-dark w-100">
-
-                        Login
-
-                    </button>
-
-                </form>
-
-                <hr>
-
-                <p class="text-center mb-0">
-
-                    Don't have an account?
-
-                    <a routerLink="/register" class="fw-bold">
-
-                        Register
-
-                    </a>
-
-                </p>
-
-            </div>
-
-        </div>
-
+          <a routerLink="/register" class="fw-bold"> Register </a>
+        </p>
+      </div>
     </div>
-
+  </div>
 </section>
